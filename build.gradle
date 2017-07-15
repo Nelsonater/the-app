@@ -1,6 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
+apply plugin: 'maven'
 
 test.onlyIf { !Boolean.getBoolean('skip.tests') }
 
@@ -45,6 +46,19 @@ allprojects {
 
     if (System.getenv("BUILD_NUMBER") != null)
         version += ".${System.getenv("BUILD_NUMBER")}"
+}
+
+uploadArchives {
+    repositories {
+       mavenDeployer {
+             repository(url: "http://nexus:8081/nexus/content/repositories/snapshots") {
+             authentication(userName: "alex", password: "5881")
+}
+             pom.version = "1.0-SNAPSHOT"
+             pom.artifactId = "simple-project"
+             pom.groupId = "com.example"
+       }
+    }
 }
 
 subprojects {
