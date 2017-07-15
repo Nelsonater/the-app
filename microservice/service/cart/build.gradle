@@ -2,6 +2,7 @@ apply plugin: 'groovy'
 apply plugin: 'spring-boot'
 apply plugin: 'docker'
 apply plugin: 'pkg-debian'
+apply plugin: 'maven'
 
 jar.baseName = "cart-microservice"
 
@@ -35,6 +36,19 @@ sourceSets {
         resources {
             srcDir 'src/test/groovy'
         }
+    }
+}
+
+uploadArchives {
+    repositories {
+       mavenDeployer {
+             repository(url: "http://nexus:8081/nexus/content/repositories/snapshots") {
+             authentication(userName: "alex", password: "5881")
+}
+             pom.version = "1.0-SNAPSHOT"
+             pom.artifactId = "devops-dojo"
+             pom.groupId = "com.example"
+       }
     }
 }
 

@@ -55,7 +55,7 @@ uploadArchives {
              authentication(userName: "alex", password: "5881")
 }
              pom.version = "1.0-SNAPSHOT"
-             pom.artifactId = "simple-project"
+             pom.artifactId = "devops-dojo"
              pom.groupId = "com.example"
        }
     }

@@ -32,6 +32,19 @@ repositories {
     }
 }
 
+uploadArchives {
+    repositories {
+       mavenDeployer {
+             repository(url: "http://nexus:8081/nexus/content/repositories/snapshots") {
+             authentication(userName: "alex", password: "5881")
+}
+             pom.version = "1.0-SNAPSHOT"
+             pom.artifactId = "devops-dojo"
+             pom.groupId = "com.example"
+       }
+    }
+}
+
 dependencies {
     //please extract version numbers and don't forget main gradle
     compile "org.scala-lang:scala-library:$scalaVersion"
